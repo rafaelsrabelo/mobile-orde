@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:the_king_of_delivery/src/components/custom_text_field.dart';
 import 'package:the_king_of_delivery/src/config/custom_collors.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+  SignUpScreen({super.key});
+
+  final cpfFormatter = MaskTextInputFormatter(
+    mask: '###.###.###-##',
+    filter: {'#': RegExp(r'[0-9]')},
+  );
+
+  final phoneFormatter = MaskTextInputFormatter(
+    mask: '## # ####-####',
+    filter: {'#': RegExp(r'[0-9]')},
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +57,16 @@ class SignUpScreen extends StatelessWidget {
                         ),
                         const CustomTextField(
                             icon: Icons.person, label: 'Nome'),
-                        const CustomTextField(
-                            icon: Icons.phone, label: 'Celular'),
-                        const CustomTextField(
-                            icon: Icons.file_copy, label: 'CPF'),
+                        CustomTextField(
+                          icon: Icons.phone,
+                          label: 'Celular',
+                          inputFormatter: [phoneFormatter],
+                        ),
+                        CustomTextField(
+                          icon: Icons.file_copy,
+                          label: 'CPF',
+                          inputFormatter: [cpfFormatter],
+                        ),
                         SizedBox(
                           height: 48,
                           child: ElevatedButton(
@@ -76,7 +93,11 @@ class SignUpScreen extends StatelessWidget {
                     child: IconButton(
                         onPressed: () {
                           Navigator.of(context).pop();
-                        }, icon: Icon(Icons.arrow_back_ios, color: Colors.white,))),
+                        },
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.white,
+                        ))),
               )
             ],
           ),
