@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:the_king_of_delivery/src/config/custom_collors.dart';
 import 'package:the_king_of_delivery/src/screens/app/navigation_screen.dart';
 
 class BaseScreen extends StatefulWidget {
