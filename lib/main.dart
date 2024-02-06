@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:the_king_of_delivery/src/routes/routes.dart';
-import 'package:the_king_of_delivery/src/screens/auth/sign_in_screen.dart';
 import 'package:the_king_of_delivery/src/screens/onboarding/onboarding_screen.dart';
 
-void main() {
+void main()  async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterConfig.loadEnvVariables();
   runApp(const MyApp());
 }
 
