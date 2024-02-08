@@ -15,12 +15,12 @@ class NavigationScreen extends StatelessWidget {
     return Scaffold(
       key: appKey,
       appBar: AppBar(
+        backgroundColor: CustomColors.customSwatchColor,
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text.rich(
           TextSpan(
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 20, color: Colors.black87),
             children: [
               TextSpan(
                 text: 'Olá, ',
@@ -46,8 +46,8 @@ class NavigationScreen extends StatelessWidget {
                 ),
                 child: Icon(
                   Icons.notifications,
-                  color: CustomColors.customSwatchColor,
-                  size: 20,
+                  color: Colors.white,
+                  size: 32,
                 ),
               ),
             ),
@@ -60,12 +60,12 @@ class NavigationScreen extends StatelessWidget {
           final local = context.watch<RestaurantsController>();
 
           return GoogleMap(
+            mapType: MapType.normal,
+            zoomControlsEnabled: true,
             initialCameraPosition: CameraPosition(
               target: LatLng(local.lat, local.long),
-              zoom: 18,
+              zoom: 13,
             ),
-            zoomControlsEnabled: true,
-            mapType: MapType.normal,
             myLocationEnabled: true,
             onMapCreated: local.onMapCreated,
             markers: local.markers,

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:the_king_of_delivery/src/components/details_restaurant.dart';
 import 'package:the_king_of_delivery/src/repositories/restaurants_repository.dart';
+import 'package:get/get.dart';
+import 'package:the_king_of_delivery/src/screens/app/navigation_screen.dart';
 
 class RestaurantsController extends ChangeNotifier {
   double lat = 0.0;
@@ -21,15 +24,29 @@ class RestaurantsController extends ChangeNotifier {
   loadRestaurants() async {
     final restaurants = RestaurantsRepository().restaurants;
     restaurants.forEach((restaurant) async {
-      markers.add(
-        Marker(markerId: MarkerId(restaurant.name), position: LatLng(restaurant.latitude, restaurant.longitude), onTap: () => {
-          // showModalBottomSheet(context: appKey.currentState!.context, builder: (context) => Details)
-        })
-      );
+      markers.add(Marker(
+        markerId: MarkerId(restaurant.name),
+        position: LatLng(restaurant.latitude, restaurant.longitude),
+        onTap: () => showDetails(restaurant),
+      ));
     });
 
     notifyListeners();
   }
+
+showDetails(restaurant) {
+  print('clicou');
+  final context = appKey.currentState!.context;
+  showModalBottomSheet(
+    context: context,
+    builder: (context) => DetailsRestaurantModal(
+      name: restaurant.name,
+      photo: restaurant.photo,
+    ),
+    barrierColor: Colors.transparent,
+  );
+}
+
 
   getPosition() async {
     try {

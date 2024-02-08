@@ -19,6 +19,8 @@ dependencies:
   provider: ^6.1.1
   google_maps_flutter: ^2.5.3
   flutter_config: ^2.0.2
+  get: ^4.3.8
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -31,6 +33,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-
-
+    - assets/food1.png
+    - assets/food.png
 
